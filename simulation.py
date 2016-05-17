@@ -2,11 +2,12 @@ from time import time
 
 
 def simulate(blackbox, controller, view):
-    prev_time = time()  # First dt will be basically 0
+    start_time = time()
+    prev_time = 0.0  # First dt will be basically 0
     
     while True:
         # Calculate time since last step
-        current_time = time()
+        current_time = time() - start_time
         dt = current_time - prev_time
         prev_time = current_time
 

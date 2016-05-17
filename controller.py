@@ -23,14 +23,14 @@ class PIController(Controller):
     """Use proportional and integral functions of error to control blackbox"""
     def __init__(self, K_p, K_i, target):
         """Instantiate PI controller with parameters K_p, K_i, target"""
-        self.K_p = K_p
-        self.K_i = K_i
-        self.target = target
-        self.control_variable = 0
+        self.K_p = float(K_p)
+        self.K_i = float(K_i)
+        self.target = float(target)
+        self.control_variable = 0.0
 
-        self.blackbox_state = 0
-        self.prev_error = 0
-        self.integral = 0
+        self.blackbox_state = 0.0
+        self.prev_error = 0.0
+        self.integral = 0.0
 
     def set_input(self, value):
         """Tell controller the current blackbox state"""
@@ -46,4 +46,4 @@ class PIController(Controller):
         self.integral += (error + self.prev_error) * dt / 2
         prev_error = error
 
-        self.control_varible = self.K_p * error + self.K_i * self.integral
+        self.control_variable = self.K_p * error + self.K_i * self.integral
