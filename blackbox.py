@@ -38,3 +38,26 @@ class FactorBlackbox(Blackbox):
     def update(self, dt):
         """Ignore time passed, just update output value"""
         self.output = self.input_ * self.factor
+
+
+class DelayBlackbox(Blackbox):
+    """Delay input by a specified amount of time"""
+    def __init__(self, delay):
+        """Instantiate blackbox with a delay in seconds"""
+        self.input_ = 0
+        self.output = 0
+        self.history = []
+        self.time = 0
+
+    def set_input(self, value):
+        self.input_ = value
+
+    def get_output(self):
+        return self.output
+
+    def update(self, dt):
+        self.history.append((self.time, self.input_))
+        self.time += dt
+
+        # get time
+        
